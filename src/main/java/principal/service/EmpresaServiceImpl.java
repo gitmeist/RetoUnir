@@ -3,10 +3,11 @@ package principal.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import principal.entidades.Empresa;
 import principal.repository.EmpresaRepository;
-
+@Service
 public class EmpresaServiceImpl implements EmpresaService {
 
 	@Autowired 
@@ -15,7 +16,7 @@ public class EmpresaServiceImpl implements EmpresaService {
 	@Override
 	public Empresa alta(Empresa empresa) {
 		try {
-			if (emprepo.existsById(empresa.getId_empresa()))
+			if (emprepo.existsById(empresa.getIdEmpresa()))
 				return null;
 			else  
 				return emprepo.save(empresa);
@@ -30,7 +31,7 @@ public class EmpresaServiceImpl implements EmpresaService {
 	@Override
 	public Empresa modificar(Empresa empresa) {
 		try {
-			if (emprepo.existsById(empresa.getId_empresa()))
+			if (emprepo.existsById(empresa.getIdEmpresa()))
 				return emprepo.save(empresa);
 			else  
 				return null;
@@ -43,10 +44,10 @@ public class EmpresaServiceImpl implements EmpresaService {
 	}
 
 	@Override
-	public int eliminar(int id_empresa) {
+	public int eliminar(int idEmpresa) {
 		try {
-			if (emprepo.existsById(id_empresa)) {
-				emprepo.deleteById(id_empresa);
+			if (emprepo.existsById(idEmpresa)) {
+				emprepo.deleteById(idEmpresa);
 				return 1;
 			}
 			else  
@@ -60,9 +61,9 @@ public class EmpresaServiceImpl implements EmpresaService {
 	}
 
 	@Override
-	public Empresa buscarUna(int id_empresa) {
+	public Empresa buscarUna(int idEmpresa) {
 		// TODO Auto-generated method stub
-		return emprepo.findById(id_empresa).orElse(null);
+		return emprepo.findById(idEmpresa).orElse(null);
 	}
 
 	@Override

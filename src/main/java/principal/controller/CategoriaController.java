@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import principal.entidades.Categoria;
@@ -28,9 +29,9 @@ public class CategoriaController {
 		return catser.buscarTodos();
 	}
 	
-	@GetMapping("/{id_categoria}")
-	public Categoria una(@PathVariable int id_categoria ) {
-		return catser.buscarUna(id_categoria);
+	@GetMapping("/{idCategoria}")
+	public Categoria una(@PathVariable int idCategoria ) {
+		return catser.buscarUna(idCategoria);
 	}
 	
 	@PostMapping("/")
@@ -38,14 +39,14 @@ public class CategoriaController {
 		return catser.alta(categoria);
 	}
 	
-	@PutMapping("/modificar") // Hay que anadir un id_categoria?
-	public Categoria modificar (@RequestBody Categoria categoria) {
+	@PutMapping("/modificar/{idCategoria}")
+	public Categoria modificar (@PathVariable int idCategoria , @RequestBody Categoria categoria) {
 		return catser.modificar(categoria);
 	}
 	
-	@DeleteMapping("/eliminar/{id_categoria}")
-	public String eliminar(@PathVariable int id_categoria) {
-		switch (catser.elminar(id_categoria)) {
+	@DeleteMapping("/eliminar/{idCategoria}")
+	public String eliminar(@PathVariable int idCategoria) {
+		switch (catser.eliminar(idCategoria)) {
 			case 1:  return "Categoria eliminada correctamente";
 			case 0:  return "Categoria no existe";
 			case -1: return "Esta Categoria no se puede borrar porque tiene asociada otras entidades";

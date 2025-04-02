@@ -29,9 +29,9 @@ public class EmpresaController {
 		return empser.buscarTodos();
 	}
 
-	@GetMapping("/{id_empresa}")
-	public Empresa una(@PathVariable int id_empresa ) {
-		return empser.buscarUna(id_empresa);
+	@GetMapping("/{idEmpresa}")
+	public Empresa una(@PathVariable int idEmpresa ) {
+		return empser.buscarUna(idEmpresa);
 	}
 	
 	@PostMapping("/")
@@ -39,14 +39,14 @@ public class EmpresaController {
 		return empser.alta(empresa);
 	}
 	
-	@PutMapping("/modificar") // Hay que anadir un id_categoria?
-	public Empresa modificar (@RequestBody Empresa empresa) {
+	@PutMapping("/modificar/{idEmpresa}") // Hay que anadir un id_categoria?
+	public Empresa modificar (@PathVariable int idEmpresa , @RequestBody Empresa empresa) {
 		return empser.modificar(empresa);
 	}
 	
-	@DeleteMapping("/eliminar/{id_categoria}")
-	public String eliminar(@PathVariable int id_empresa) {
-		switch (empser.eliminar(id_empresa)) {
+	@DeleteMapping("/eliminar/{idEmpresa}")
+	public String eliminar(@PathVariable int idEmpresa) {
+		switch (empser.eliminar(idEmpresa)) {
 			case 1:  return "Empresa eliminada correctamente";
 			case 0:  return "Empresa no existe";
 			case -1: return "Esta Empresa no se puede borrar porque tiene asociada otras entidades";

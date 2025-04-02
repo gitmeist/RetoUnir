@@ -3,10 +3,11 @@ package principal.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import principal.entidades.Vacante;
 import principal.repository.VacanteRepository;
-
+@Service
 public class VacanteServiceImpl implements VacanteService {
 
 	@Autowired
@@ -15,7 +16,7 @@ public class VacanteServiceImpl implements VacanteService {
 	@Override
 	public Vacante alta(Vacante vacante) {
 		try {
-			if (vacrepo.existsById(vacante.getId_vacante()))
+			if (vacrepo.existsById(vacante.getIdVacante()))
 				return null;
 			else  
 				return vacrepo.save(vacante);
@@ -31,7 +32,7 @@ public class VacanteServiceImpl implements VacanteService {
 	@Override
 	public Vacante modificar(Vacante vacante) {
 		try {
-			if (vacrepo.existsById(vacante.getId_vacante()))
+			if (vacrepo.existsById(vacante.getIdVacante()))
 				return vacrepo.save(vacante);
 			else  
 				return null;
@@ -44,10 +45,10 @@ public class VacanteServiceImpl implements VacanteService {
 	}
 
 	@Override
-	public int eliminar(int id_vacante) {
+	public int eliminar(int idVacante) {
 		try {
-			if (vacrepo.existsById(id_vacante)) {
-				vacrepo.deleteById(id_vacante);
+			if (vacrepo.existsById(idVacante)) {
+				vacrepo.deleteById(idVacante);
 				return 1;
 			}
 			else  
@@ -61,9 +62,9 @@ public class VacanteServiceImpl implements VacanteService {
 	}
 
 	@Override
-	public Vacante buscarUna(int id_vacante) {
+	public Vacante buscarUna(int idVacante) {
 		
-		return vacrepo.findById(id_vacante).orElse(null);
+		return vacrepo.findById(idVacante).orElse(null);
 	}
 
 	@Override

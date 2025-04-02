@@ -3,10 +3,11 @@ package principal.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import principal.entidades.Solicitud;
 import principal.repository.SolicitudRepository;
-
+@Service
 public class SolicitudServiceImpl implements SolicitudService {
 
 	@Autowired SolicitudRepository solrepo;
@@ -14,7 +15,7 @@ public class SolicitudServiceImpl implements SolicitudService {
 	@Override
 	public Solicitud alta(Solicitud solicitud) {
 		try {
-			if (solrepo.existsById(solicitud.getId_solicitud()))
+			if (solrepo.existsById(solicitud.getIdSolicitud()))
 				return null;
 			else  
 				return solrepo.save(solicitud);
@@ -29,7 +30,7 @@ public class SolicitudServiceImpl implements SolicitudService {
 	@Override
 	public Solicitud modificar(Solicitud solicitud) {
 		try {
-			if (solrepo.existsById(solicitud.getId_solicitud()))
+			if (solrepo.existsById(solicitud.getIdSolicitud()))
 				return solrepo.save(solicitud);
 			else  
 				return null;
@@ -42,10 +43,10 @@ public class SolicitudServiceImpl implements SolicitudService {
 	}
 
 	@Override
-	public int eliminar(int id_solicitud) {
+	public int eliminar(int idSolicitud) {
 		try {
-			if (solrepo.existsById(id_solicitud)) {
-				solrepo.deleteById(id_solicitud);
+			if (solrepo.existsById(idSolicitud)) {
+				solrepo.deleteById(idSolicitud);
 				return 1;
 			}
 			else  
@@ -59,9 +60,9 @@ public class SolicitudServiceImpl implements SolicitudService {
 	}
 
 	@Override
-	public Solicitud buscarUna(int id_solicitud) {
+	public Solicitud buscarUna(int idSolicitud) {
 		// TODO Auto-generated method stub
-		return solrepo.findById(id_solicitud).orElse(null);
+		return solrepo.findById(idSolicitud).orElse(null);
 	}
 
 	@Override

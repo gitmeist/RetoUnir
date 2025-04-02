@@ -3,10 +3,11 @@ package principal.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import principal.entidades.Usuario;
 import principal.repository.UsuarioRepository;
-
+@Service
 public class UsuarioServiceImpl implements UsuarioService{
 
 	@Autowired

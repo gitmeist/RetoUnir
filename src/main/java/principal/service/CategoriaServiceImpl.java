@@ -15,7 +15,7 @@ public class CategoriaServiceImpl implements CategoriaService{
 	@Override
 	public Categoria alta(Categoria categoria) {
 		try {
-			if (catrepo.existsById(categoria.getId_categoria()))
+			if (catrepo.existsById(categoria.getIdCategoria()))
 				return null;
 			else
 				return catrepo.save(categoria);
@@ -30,7 +30,7 @@ public class CategoriaServiceImpl implements CategoriaService{
 	@Override
 	public Categoria modificar(Categoria categoria) {
 		try {
-			if(catrepo.existsById(categoria.getId_categoria()))
+			if(catrepo.existsById(categoria.getIdCategoria()))
 				return catrepo.save(categoria);
 			else
 				return null;
@@ -42,10 +42,10 @@ public class CategoriaServiceImpl implements CategoriaService{
 	}
 
 	@Override
-	public int elminar(int id_categoria) {
+	public int eliminar(int idCategoria) {
 		try {
-			if(catrepo.existsById(id_categoria)) {
-				catrepo.deleteById(id_categoria);
+			if(catrepo.existsById(idCategoria)) {
+				catrepo.deleteById(idCategoria);
 				return 1;
 			}
 			else
@@ -59,9 +59,9 @@ public class CategoriaServiceImpl implements CategoriaService{
 	}
 
 	@Override
-	public Categoria buscarUna(int id_categoria) {
+	public Categoria buscarUna(int idCategoria) {
 		
-		return catrepo.findById(id_categoria).orElse(null);
+		return catrepo.findById(idCategoria).orElse(null);
 	}
 
 	@Override
@@ -69,5 +69,7 @@ public class CategoriaServiceImpl implements CategoriaService{
 		// TODO Auto-generated method stub
 		return catrepo.findAll();
 	}
+
+	
 
 }

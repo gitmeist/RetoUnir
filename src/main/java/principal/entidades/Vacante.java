@@ -3,6 +3,7 @@ package principal.entidades;
 import java.time.LocalDate;
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,7 +27,8 @@ import lombok.NoArgsConstructor;
 public class Vacante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_vacante;	
+	@Column(name = "id_vacante")
+	private int idVacante;	
 	private String nombre;
 	private String descripcion;
 	private Date fecha;

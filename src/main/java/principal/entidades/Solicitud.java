@@ -2,6 +2,7 @@ package principal.entidades;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,7 +22,8 @@ import lombok.NoArgsConstructor;
 public class Solicitud {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_solicitud;
+	@Column(name="id_solicitud")
+	private int idSolicitud;
 	private Date fecha;
 	private String archivo;
 	private String comentarios;
@@ -30,11 +32,11 @@ public class Solicitud {
 	
 	@ManyToOne
 	@JoinColumn(name="id_vacante")
-	private int id_vacante;
+	private Vacante vacante;
 	
 	@ManyToOne
 	@JoinColumn(name="email")
-	private String email;
+	private Usuario usuario;
 	
 	
 	
